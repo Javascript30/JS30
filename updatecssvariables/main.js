@@ -5,3 +5,10 @@ inputs.forEach((input) =>
     console.log(input.value);
   })
 );
+
+
+inputs.forEach((input) =>
+  input.addEventListener("mouseover", function() {
+    console.log(input.value);
+  })
+);
