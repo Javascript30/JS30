@@ -7,17 +7,29 @@ fetch(endpoint)
   .then((blob) => blob.json())
   .then((data) => cities.push([...data]));
 
-const findMatches = (wordToMatch, cities) => {
+function findMatches(wordToMatch, cities) {
   return cities.filter((place) => {
     const regex = new RegExp(wordToMatch, "gi");
     return place.city.match(regex) || place.state.match(regex);
   });
-};
+}
 
-const displayMatches = (e) => {
+function displayMatches(e) {
   const matchArray = findMatches(e.target.value, cities);
   console.log(matchArray);
-};
+  const html = matchArray
+    .map((place) => {
+      return;
+      `
+    <li>
+      <span class="name">${place.city}, ${place.name}</span>
+      <span class="population">${place.population}</span>
+    </li>
+    `;
+    })
+    .join("");
+  suggestions.innerHTML = html;
+}
 
 const searchInput = document.querySelector(".search");
 const suggestions = document.querySelector(".suggestions");
